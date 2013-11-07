@@ -7,10 +7,11 @@ require "fencepost/version"
 Gem::Specification.new do |s|
   s.name        = "fencepost"
   s.version     = Fencepost::VERSION
+  s.license     = "MIT"
   s.authors     = ["Scott Helm"]
   s.email       = ["helm.scott@gmail.com"]
   s.homepage    = "https://github.com/scotthelm/fencepost"
-  s.summary     = "Dynamic strong parameter configuration for your AR models"
+  s.summary     = "Rails 4.x strong parameter configuration for your AR models"
   s.description = "Dynamic strong parameter configuration for your AR models"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
