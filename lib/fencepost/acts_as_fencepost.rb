@@ -2,8 +2,8 @@ module Fencepost
   module ActsAsFencepost
     extend ActiveSupport::Concern
 
-    def strong_params
-      @strong_params = StrongParamGenerator.new(params)
+    def fencepost
+      @fencepost = Fencepost.new(params)
     end
   end
 end

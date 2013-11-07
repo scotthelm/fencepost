@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe ::StrongParamGenerator do
-  let(:subject) { StrongParamGenerator }
+describe Fencepost::Fencepost do
+  let(:subject) { Fencepost::Fencepost }
   let(:test_object) {Person.new}
 
   describe "models" do
