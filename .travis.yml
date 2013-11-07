@@ -2,6 +2,6 @@ language: ruby
 rvm:
   - 2.0.0
 before_script:
-  - cd spec/dummy && RAILS_ENV=test bundle exec rake --trace db:migrate test && cd ../..
+  - cd spec/dummy && RAILS_ENV=test bundle exec rake --trace db:migrate && cd ../..
 script:
   - bundle exec rspec spec
