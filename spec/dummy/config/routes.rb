@@ -53,4 +53,5 @@ Dummy::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :people, only: [:index, :create]
 end
