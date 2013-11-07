@@ -1,6 +1,7 @@
 # Fencepost
 [![Gem Version](https://badge.fury.io/rb/fencepost.png)](http://badge.fury.io/rb/fencepost)
 [![Build Status](https://travis-ci.org/scotthelm/fencepost.png)](https://travis-ci.org/scotthelm/fencepost)
+[![Code Climate](https://codeclimate.com/github/scotthelm/fencepost.png)](https://codeclimate.com/github/scotthelm/fencepost)
 
 For Rails 4.x - Provides a simple method for creating strong parameter
 configuration based on your ActiveRecord models, and using this configuration
