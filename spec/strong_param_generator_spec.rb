@@ -32,6 +32,11 @@ describe Fencepost::Fencepost do
       expect(a.person_params).to eq({"first_name" => "Foo"})
     end
 
+    it "should not allow model attributes that have been removed in config" do
+      a = subject.new(person: {first_name: "Foo", dob: Time.now})
+      expect(a.person_params).to eq({"first_name" => "Foo"})
+    end
+
     it "association_classes should return array of associations" do
       a = subject.new({
         person: {

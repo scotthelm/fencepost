@@ -8,3 +8,5 @@ spec/dummy/tmp/
 spec/dummy/.sass-cache
 *.swp
 *.gem
+spec/dummy/config/initializers/fencepost.rb
+
