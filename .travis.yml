@@ -3,5 +3,6 @@ rvm:
   - 2.0.0
 before_script:
   - cd spec/dummy && RAILS_ENV=test bundle exec rake --trace db:migrate && cd ../..
+  - cd spec/dummy && RAILS_ENV=test rails generate fencepost_config && cd ../..
 script:
   - bundle exec rspec spec
