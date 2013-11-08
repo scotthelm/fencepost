@@ -4,5 +4,8 @@ rvm:
 before_script:
   - cd spec/dummy && RAILS_ENV=test bundle exec rake --trace db:migrate && cd ../..
   - cd spec/dummy && RAILS_ENV=test bundle exec rails generate fencepost_config && cd ../..
+  - cd spec/dummy/config/initializers/ && cat fencepost.rb | grep -v "dob" > fencepost2.rb
+  - mv fencepost2.rb fencepost.rb
+  - cd ../..
 script:
   - bundle exec rspec spec
