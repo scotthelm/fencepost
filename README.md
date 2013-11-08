@@ -13,6 +13,12 @@ Add `fencepost` to your `Gemfile`
 
     gem 'fencepost'
 
+then run
+
+    rails g fencepost_config
+
+This creates a yaml map of your models. Here is where you can edit the allowable
+attributes for your models.
 ## Usage
 
 The gem creates a `fencepost` method in your contollers. This returns a
