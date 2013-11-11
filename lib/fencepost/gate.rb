@@ -24,11 +24,38 @@ module Fencepost
     end
 
     def allow_permissions(perms)
-      perms + allow_array
+      hash_values(allow_array).each do |hash_value|
+        perms = nested_operations(perms, hash_value, :+)
+      end
+      perms + scalar_values(allow_array)
     end
 
     def deny_permissions(perms)
-      perms - deny_array
+      hash_values(deny_array).each do |hash_value|
+        perms = nested_operations(perms, hash_value, :-)
+      end
+      perms - scalar_values(deny_array)
+    end
+
+    def scalar_values(arry)
+      arry.select{|x| x.is_a?(String) || x.is_a?(Symbol)}
+    end
+
+    def hash_values(arry)
+      arry.select{|x| x.is_a?(Hash)}
+    end
+
+    def nested_operations(perms, hash, operator)
+      perms.each do |perm|
+        hash.each do |key, value|
+          if perm.is_a?(Hash) && perm.keys.index(key) && perm[key].is_a?(Array)
+            perm[key] = perm[key].send(operator, value)
+          elsif perm.is_a?(Hash) && perm.keys.index(key) && perm[key].is_a?(Hash)
+            perm[key] = nested_denies(perm[key], value)
+          end
+
+        end
+      end
     end
 
     def build_permits(model, permits_array)

@@ -69,11 +69,38 @@ describe Fencepost::Fencepost do
       expect(a.deny(:dob)).to be_a(Fencepost::Fencepost)
     end
 
+    it "should be chainable" do
+      a = subject.new({})
+      expect(a.allow(:x).deny(:y).allow(:p)).to be_a(Fencepost::Fencepost)
+    end
+
     it "should allow attributes if explcitly allowed in method call" do
       dob = Time.now
       a = subject.new({"person" => {"first_name" => "Foo", "dob" => dob}})
       expect(a.allow(:dob).person_params).to eq(
         {"first_name" => "Foo", "dob" => dob})
+    end
+
+    it "should deny attributes if explicitly denied in method call" do
+      a = subject.new({"person" => {"first_name" => "Foo", "last_name" => "Bar"}})
+      expect(a.deny(:last_name).person_params).to eq( {"first_name" => "Foo"})
+    end
+
+    it "should deny nested attrbutes if explicitly denied" do
+      a = subject.new({"person" => {
+        "first_name" => "Foo",
+        "addresses_attributes" => {
+          "address_line_1" => "123 test st",
+          "city" => "wewt",
+          "state_province" => "NE"
+        }}})
+
+      expect(a.deny(addresses_attributes: [:city]).person_params).to eq(
+        {"first_name" => "Foo",
+        "addresses_attributes" => {
+          "address_line_1" => "123 test st",
+          "state_province" => "NE"
+        }})
     end
   end
 end

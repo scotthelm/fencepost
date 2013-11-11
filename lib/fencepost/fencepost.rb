@@ -5,7 +5,7 @@ module Fencepost
     def initialize(params)
       @gate = Gate.new(self.class.model_list, params)
       self.class.models.each do |model|
-        define_singleton_method self.class.method_name(model) do |allow_deny = nil|
+        define_singleton_method self.class.method_name(model) do
           gate.open(params,self.class.param_key(model), model)
         end
       end
@@ -25,7 +25,8 @@ module Fencepost
           demodulized_name: self.demodulized_name(model),
           nested_collection_name: self.nested_collection_name(model),
           nested_attributes_name: self.nested_attributes_name(model),
-          nested_attributes_options: self.nested_attributes_options(model)
+          nested_attributes_options: self.nested_attributes_options(model),
+          nested_singular_name: self.nested_singular_attributes_name(model)
         }
       end
 
@@ -63,6 +64,11 @@ module Fencepost
 
     def self.nested_attributes_name(model)
       a ="#{model.name.pluralize.demodulize.underscore.gsub("/", "_")}_attributes"
+      a.to_sym
+    end
+
+    def self.nested_singular_attributes_name(model)
+      a ="#{model.name.demodulize.underscore.gsub("/", "_")}_attributes"
       a.to_sym
     end
 

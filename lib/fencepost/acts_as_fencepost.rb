@@ -2,7 +2,7 @@ module Fencepost
   module ActsAsFencepost
     extend ActiveSupport::Concern
     def fencepost
-      @fencepost = Fencepost.new(params)
+      Fencepost.new(params)
     end
   end
 end
