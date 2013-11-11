@@ -92,8 +92,11 @@ describe Fencepost::Fencepost do
         "addresses_attributes" => {
           "address_line_1" => "123 test st",
           "city" => "wewt",
-          "state_province" => "NE"
-        }}})
+          "state_province" => "NE",
+          "address_type" => {
+            "key" => "wewt",
+            "label" => "W00t!"
+          }}}})
 
       expect(a.deny(addresses_attributes: [:city]).person_params).to eq(
         {"first_name" => "Foo",
