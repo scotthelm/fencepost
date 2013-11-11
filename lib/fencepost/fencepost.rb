@@ -1,14 +1,12 @@
 module Fencepost
   class Fencepost
-    attr_reader :params
+    attr_reader :gate
     cattr_accessor :model_list
-    def initialize(hash)
-      @params = hash
+    def initialize(params)
+      @gate = Gate.new(self.class.model_list, params)
       self.class.models.each do |model|
-        define_singleton_method self.class.method_name(model) do |deny_list = nil|
-        ActionController::Parameters.new(params).require(
-          self.class.param_key(model)).permit(
-            build_permits(model, []))
+        define_singleton_method self.class.method_name(model) do |allow_deny = nil|
+          gate.open(params,self.class.param_key(model), model)
         end
       end
     end
@@ -34,28 +32,17 @@ module Fencepost
       model_list
     end
 
-    def build_permits(model, permits_array)
-      model_attributes(model).each {|k| permits_array << k }
-      model_nested_attributes(model).each do |nao, value|
-        node = get_node(:nested_collection_name, nao)
-        node = get_node(:demodulized_name, nao) if node.keys.size == 0
-        node = node.values[0]
-        permits_array << {node[:nested_attributes_name] => build_permits(node[:model], [])}
-      end
-      permits_array
+
+    def allow(elements)
+      gate.allow(elements)
+      self
     end
 
-    def get_node(key, value)
-      self.model_list.select {|k,v| v[key] == value}
+    def deny(elements)
+      gate.deny(elements)
+      self
     end
 
-    def model_attributes(model)
-      get_node(:model, model).values[0][:attributes]
-    end
-
-    def model_nested_attributes(model)
-      get_node(:model, model).values[0][:nested_attributes_options]
-    end
     private
 
     def self.method_name(model)

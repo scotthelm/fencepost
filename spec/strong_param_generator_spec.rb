@@ -41,8 +41,7 @@ describe Fencepost::Fencepost do
       a = subject.new({
         person: {
           first_name: "Foo",
-          addresses_attributes: {
-            "0" => {
+          addresses_attributes: { "0" => {
               address_line_1: "123 test st",
               city: "wewt",
               state_province: "NE"
@@ -59,7 +58,22 @@ describe Fencepost::Fencepost do
           "state_province" => "NE"
         }}
       })
+    end
 
+    it "should return a reference to self on allows" do
+      a = subject.new({})
+      expect(a.allow(:dob)).to be_a(Fencepost::Fencepost)
+    end
+    it "should return a reference to self on deny" do
+      a = subject.new({})
+      expect(a.deny(:dob)).to be_a(Fencepost::Fencepost)
+    end
+
+    it "should allow attributes if explcitly allowed in method call" do
+      dob = Time.now
+      a = subject.new({"person" => {"first_name" => "Foo", "dob" => dob}})
+      expect(a.allow(:dob).person_params).to eq(
+        {"first_name" => "Foo", "dob" => dob})
     end
   end
 end
