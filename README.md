@@ -19,10 +19,13 @@ Add `fencepost` to your `Gemfile`
 
     rails g fencepost_config
 
-This creates a yaml map of your models. Here is where you can edit the allowable
-attributes for your models. In the 80/20 rule, this would be the %80. Removing
-attributes in the configuration yaml lets you set reasonable defaults for strong
-parameter behavior.
+This creates a yaml map of your models in
+
+`<your app>/config/initializers/fencepost.rb`.
+
+Here is where you can edit the allowable attributes for your models. In the
+80/20 rule, this would be the %80. Removing attributes in the configuration yaml
+lets you set reasonable defaults for strong parameter behavior.
 
 ## Usage
 
