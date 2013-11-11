@@ -5,8 +5,8 @@ before_script:
   - cd spec/dummy && RAILS_ENV=test bundle exec rake --trace db:migrate && cd ../..
   - cd spec/dummy && RAILS_ENV=test bundle exec rails generate fencepost_config && cd ../..
   - cd spec/dummy/config/initializers/ && cat fencepost.rb | grep -v "dob" > fencepost2.rb
-  - cd spec/dummy/config/initializers/ && cat fencepost.rb | grep -v "key" > fencepost3.rb
-  - cd spec/dummy/config/initializers/ && cat fencepost.rb | grep -v "person_id" > fencepost4.rb
+  - cat fencepost.rb | grep -v "key" > fencepost3.rb
+  - cat fencepost.rb | grep -v "person_id" > fencepost4.rb
   - mv fencepost4.rb fencepost.rb
   - cd ../..
 script:
