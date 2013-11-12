@@ -98,12 +98,16 @@ describe Fencepost::Fencepost do
             "label" => "W00t!"
           }}}})
 
-      expect(a.deny(addresses_attributes: [:city, address_types_attributes: [:label]]).person_params).to eq(
-        {"first_name" => "Foo",
-        "addresses_attributes" => {
-          "address_line_1" => "123 test st",
-          "state_province" => "NE"
-        }})
+      expect(a.deny(
+        addresses_attributes: [:city, address_types_attributes: [:label]]).
+        person_params).to eq(
+          {"first_name" => "Foo",
+          "addresses_attributes" => {
+            "address_line_1" => "123 test st",
+            "state_province" => "NE",
+            "address_types_attributes" => {
+              "key" => "wewt"
+            }}})
     end
   end
 end

@@ -3,6 +3,7 @@ module Fencepost
     attr_reader :gate
     cattr_accessor :model_list
     def initialize(params)
+      
       @gate = Gate.new(self.class.model_list, params)
       self.class.models.each do |model|
         define_singleton_method self.class.method_name(model) do

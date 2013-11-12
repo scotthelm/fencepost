@@ -5,6 +5,7 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'coveralls'
+require 'pry'
 Coveralls.wear!
 
 # Requires supporting ruby files with custom matchers and macros, etc,
