@@ -61,6 +61,8 @@ describe Fencepost::Fencepost do
           "state_province" => "NE"
         }}
       })
+
+      expect { Person.create(a.person_params) }.not_to raise_error
     end
 
     it "should return a reference to self on allows" do
@@ -87,6 +89,7 @@ describe Fencepost::Fencepost do
     it "should deny attributes if explicitly denied in method call" do
       a = subject.new({"person" => {"first_name" => "Foo", "last_name" => "Bar"}})
       expect(a.deny(:last_name).person_params).to eq( {"first_name" => "Foo"})
+      expect { Person.create(a.deny(:last_name).person_params) }.not_to raise_error
     end
 
     it "should deny nested attrbutes if explicitly denied" do
