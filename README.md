@@ -24,6 +24,10 @@ This creates a yaml map of your models in
 
 `<your app>/config/initializers/fencepost.rb`.
 
+You can re-run the initializer at any time. You will be asked if you want to
+overwrite the existing config. "Y" will force an overwrite of the file, and you
+will need to re-comment out any attributes you want to remove by default.
+
 ### Default Configuration
 
 The yaml map is where you can edit the allowable attributes for your models. In
