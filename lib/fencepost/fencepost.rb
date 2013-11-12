@@ -81,7 +81,7 @@ module Fencepost
     end
 
     def self.always_forbidden_attributes
-      [:id, :created_at, :updated_at, :created_by, :updated_by]
+      []
     end
 
     def self.attribute_keys(model)
