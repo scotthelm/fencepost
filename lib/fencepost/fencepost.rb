@@ -85,8 +85,12 @@ module Fencepost
     end
 
     def self.attribute_keys(model)
-      a = model.new.attributes.keys.map {|k| k.to_sym} unless model.nil? || model.abstract_class
-      (a || []) - self.always_forbidden_attributes
+      begin
+        a = model.new.attributes.keys.map {|k| k.to_sym} unless model.nil? || model.abstract_class
+        (a || []) - self.always_forbidden_attributes
+      rescue
+        []
+      end
     end
 
     def self.nested_attributes_options(model)
