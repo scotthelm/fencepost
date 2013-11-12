@@ -18,7 +18,7 @@ Fencepost.configure do |config|
   # should set this to false and run bundle exec rails g fencepost_config for
   # a performance gain (having the model graph as a class variable rather than
   # creating it from scratch every time)
-  config.dev_mode = true
+  config.dev_mode = false
 end
 Fencepost::Fencepost.model_list = YAML.load(
 <<-contents
