@@ -41,6 +41,7 @@ model graph (a class-level variable)
 During the early stages of development where your code is in flux, you can set
 `dev_mode=true` in `config/initializers/fencepost.rb`. dev mode will eager load
 and read in all your models dynamically every time the class is instantiated.
+(Ignoring the yaml in the initializer)
 
 ## Usage
 
