@@ -54,7 +54,6 @@ module Fencepost
     end
 
     def set_permission_value(perm, key, value, operator)
-
       if perm.is_a?(Hash) && perm.keys.index(key) && perm[key].is_a?(Array)
         perm[key] = perm[key].send(operator, value)
         hash_values(perm[key]).each do |pk|
@@ -69,6 +68,7 @@ module Fencepost
       model_attributes(model).each {|k| permits_array << k }
       model_nested_attributes(model).each do |nao, value|
         node = get_node(:nested_collection_name, nao)
+        node = get_node(:nested_singular_name, nao) if node.keys.size == 0
         node = get_node(:demodulized_name, nao) if node.keys.size == 0
         node = node.values[0]
         permits_array << {node[:nested_attributes_name] => build_permits(node[:model], [])}

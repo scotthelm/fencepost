@@ -17,6 +17,9 @@ describe Fencepost::Fencepost do
   end
 
   describe "returned params" do
+    before(:each) do
+      load "#{Rails.root}/config/initializers/fencepost.rb"
+    end
     it "should raise error if params are empty" do
       expect(-> { subject.new({}).person_params} ).to raise_error(
         ActionController::ParameterMissing)
@@ -99,8 +102,12 @@ describe Fencepost::Fencepost do
           }}}})
 
       expect(a.deny(
-        addresses_attributes: [:city, address_types_attributes: [:label]]).
-        person_params).to eq(
+        addresses_attributes:[
+          :city,
+          address_types_attributes: [
+            :label
+          ]
+        ]).person_params).to eq(
           {"first_name" => "Foo",
           "addresses_attributes" => {
             "address_line_1" => "123 test st",
@@ -108,6 +115,13 @@ describe Fencepost::Fencepost do
             "address_types_attributes" => {
               "key" => "wewt"
             }}})
+    end
+
+    it "should allow for development mode (model loading on the fly)" do
+      Fencepost.configuration.dev_mode = true
+      dob = Time.now
+      a = subject.new({"person" => {"first_name" => "Foo", "dob" => dob}})
+      expect(a.person_params).to eq({"first_name" => "Foo", "dob" => dob})
     end
   end
 end

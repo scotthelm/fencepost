@@ -3,7 +3,7 @@ module Fencepost
     attr_reader :gate
     cattr_accessor :model_list
     def initialize(params)
-      
+      ensure_models
       @gate = Gate.new(self.class.model_list, params)
       self.class.models.each do |model|
         define_singleton_method self.class.method_name(model) do
@@ -13,7 +13,7 @@ module Fencepost
     end
 
     def self.models
-      ActiveRecord::Base.descendants
+      ActiveRecord::Base.descendants - [ActiveRecord::SchemaMigration]
     end
 
     def self.generate_model_list
@@ -34,6 +34,13 @@ module Fencepost
       model_list
     end
 
+    def ensure_models
+      Rails.application.eager_load!
+      klass = self.class
+      if ::Fencepost.configuration.dev_mode
+        klass.model_list = klass.generate_model_list
+      end
+    end
 
     def allow(elements)
       gate.allow(elements)
