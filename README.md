@@ -17,15 +17,26 @@ Add `fencepost` to your `Gemfile`
 
 ## Configuration
 
+
     rails g fencepost_config
 
 This creates a yaml map of your models in
 
 `<your app>/config/initializers/fencepost.rb`.
 
-Here is where you can edit the allowable attributes for your models. In the
-80/20 rule, this would be the %80. Removing attributes in the configuration yaml
-lets you set reasonable defaults for strong parameter behavior.
+### Default Configuration
+
+The yaml map is where you can edit the allowable attributes for your models. In
+the 80/20 rule, this would be the %80. Removing attributes in the configuration
+yaml lets you set reasonable defaults for strong parameter behavior.
+This map is read one time during intialization and stored in the Fencepost
+model graph (a class-level variable)
+
+### Dev Mode
+
+During the early stages of development where your code is in flux, you can set
+`dev_mode=true` in `config/initializers/fencepost.rb`. dev mode will eager load
+and read in all your models dynamically every time the class is instantiated.
 
 ## Usage
 
