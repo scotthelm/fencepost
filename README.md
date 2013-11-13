@@ -20,9 +20,7 @@ Add `fencepost` to your `Gemfile`
 
     rails g fencepost_config
 
-This creates a yaml map of your models in
-
-`<your app>/config/initializers/fencepost.rb`.
+This creates a yaml map of your models in `config/fencepost.yml`.
 
 You can re-run the initializer at any time. You will be asked if you want to
 overwrite the existing config. "Y" will force an overwrite of the file, and you

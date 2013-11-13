@@ -18,7 +18,8 @@ describe Fencepost::Fencepost do
 
   describe "returned params" do
     before(:each) do
-      load "#{Rails.root}/config/initializers/fencepost.rb"
+      file_name = "#{Rails.root}/config/fencepost.yml"
+      Fencepost::Fencepost.model_list = YAML.load_file(file_name) if File.exists?(file_name)
     end
     it "should raise error if params are empty" do
       expect(-> { subject.new({}).person_params} ).to raise_error(
@@ -125,6 +126,7 @@ describe Fencepost::Fencepost do
       dob = Time.now
       a = subject.new({"person" => {"first_name" => "Foo", "dob" => dob}})
       expect(a.person_params).to eq({"first_name" => "Foo", "dob" => dob})
+      Fencepost.configuration.dev_mode = false
     end
   end
 end

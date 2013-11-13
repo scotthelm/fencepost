@@ -35,9 +35,9 @@ module Fencepost
     end
 
     def ensure_models
-      Rails.application.eager_load!
       klass = self.class
       if ::Fencepost.configuration.dev_mode
+        Rails.application.eager_load!
         klass.model_list = klass.generate_model_list
       end
     end
@@ -81,7 +81,7 @@ module Fencepost
     end
 
     def self.always_forbidden_attributes
-      []
+      [:created_at, :updated_at]
     end
 
     def self.attribute_keys(model)
