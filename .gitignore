@@ -9,4 +9,5 @@ spec/dummy/.sass-cache
 *.swp
 *.gem
 spec/dummy/config/initializers/fencepost.rb
+spec/dummy/config/fencepost.yml
 coverage/
