@@ -2,6 +2,7 @@ require "fencepost/fencepost"
 require "fencepost/gate"
 require "fencepost/acts_as_fencepost"
 require "fencepost/configuration"
+require "fencepost/railtie"
 
 module Fencepost
   class << self

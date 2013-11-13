@@ -3,12 +3,12 @@ require 'yaml'
 class FencepostConfigGenerator < Rails::Generators::Base
   def create_initializer_file
     Rails.application.eager_load!
-    create_file "config/initializers/fencepost.rb",
-      file_contents
+    create_file "config/initializers/fencepost.rb", config_contents
+    create_file "config/fencepost.yml", yaml_contents
   end
 
-  def file_contents
-<<-yaml
+  def config_contents
+<<-config
 Rails.application.eager_load!
 Fencepost.configure do |config|
   # dev_mode true means that the Fencepost model_list is created every time
@@ -20,11 +20,12 @@ Fencepost.configure do |config|
   # creating it from scratch every time)
   config.dev_mode = false
 end
-Fencepost::Fencepost.model_list = YAML.load(
-<<-contents
+config
+  end
+
+  def yaml_contents
+<<-yaml
 #{Fencepost::Fencepost.generate_model_list.to_yaml}
-contents
-)
 yaml
   end
 end
