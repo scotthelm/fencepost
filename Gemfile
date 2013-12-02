@@ -13,3 +13,7 @@ gemspec
 # To use debugger
 # gem 'debugger'
 gem 'coveralls', require: false
+
+gem "pry-rails"
+gem "pry-plus"
+gem "debugger-ruby_core_source", "1.2.4"

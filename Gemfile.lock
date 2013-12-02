@@ -51,7 +51,7 @@ GEM
       debugger-linecache (~> 1.2.0)
       debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.3)
+    debugger-ruby_core_source (1.2.4)
     diff-lcs (1.2.4)
     docile (1.1.0)
     erubis (2.7.0)
@@ -164,6 +164,7 @@ PLATFORMS
 
 DEPENDENCIES
   coveralls
+  debugger-ruby_core_source (= 1.2.4)
   fencepost!
   pry-plus
   pry-rails
