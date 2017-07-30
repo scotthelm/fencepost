@@ -11,3 +11,4 @@ spec/dummy/.sass-cache
 spec/dummy/config/initializers/fencepost.rb
 spec/dummy/config/fencepost.yml
 coverage/
+tmp/
