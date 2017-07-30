@@ -7,6 +7,5 @@ before_script:
   # - cd spec/dummy/config/ && cat fencepost.yml | grep -v "dob" > fencepost2.yml
   # - cat fencepost2.yml | grep -v "person_id" > fencepost3.yml
   # - mv fencepost3.yml fencepost.yml
-  - cd ../..
 script:
-  - bundle exec rspec spec
+  - bundle exec rspec
