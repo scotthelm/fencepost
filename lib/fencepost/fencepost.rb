@@ -7,7 +7,7 @@ module Fencepost
       @gate = Gate.new(self.class.model_list, params)
       self.class.models.each do |model|
         define_singleton_method self.class.method_name(model) do
-          gate.open(params,self.class.param_key(model), model)
+          gate.open(params, self.class.param_key(model), model)
         end
       end
     end
