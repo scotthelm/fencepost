@@ -3,9 +3,10 @@ rvm:
   - 2.4.0
 before_script:
   - cd spec/dummy && RAILS_ENV=test bundle exec rake --trace db:migrate && cd ../..
-  # - cd spec/dummy && RAILS_ENV=test bundle exec rails generate fencepost_config && cd ../..
-  # - cd spec/dummy/config/ && cat fencepost.yml | grep -v "dob" > fencepost2.yml
-  # - cat fencepost2.yml | grep -v "person_id" > fencepost3.yml
-  # - mv fencepost3.yml fencepost.yml
+  - cd spec/dummy && RAILS_ENV=test bundle exec rails generate fencepost_config && cd ../..
+  - cd spec/dummy/config/ && cat fencepost.yml | grep -v "dob" > fencepost2.yml
+  - cat fencepost2.yml | grep -v "person_id" > fencepost3.yml
+  - mv fencepost3.yml fencepost.yml
+  - cd ../../../
 script:
   - bundle exec rspec
