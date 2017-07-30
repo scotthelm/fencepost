@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fencepost (0.2.0)
+    fencepost (0.3.0)
       rails (>= 4.0, <= 5.2)
 
 GEM
