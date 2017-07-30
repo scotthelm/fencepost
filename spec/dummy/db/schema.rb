@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,27 +12,27 @@
 
 ActiveRecord::Schema.define(version: 20131111184555) do
 
-  create_table "address_types", force: true do |t|
-    t.string   "key"
-    t.string   "label"
+  create_table "address_types", force: :cascade do |t|
+    t.string "key"
+    t.string "label"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "addresses", force: true do |t|
-    t.integer  "person_id"
-    t.string   "address_line_1"
-    t.string   "address_line_2"
-    t.string   "city"
-    t.string   "state_province"
-    t.string   "postal_code"
+  create_table "addresses", force: :cascade do |t|
+    t.integer "person_id"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "city"
+    t.string "state_province"
+    t.string "postal_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "people", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+  create_table "people", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "dob"
     t.datetime "created_at"
     t.datetime "updated_at"

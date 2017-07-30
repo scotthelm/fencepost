@@ -1,0 +1,11 @@
+version: "2"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - bundle:/usr/local/bundle
+volumes:
+  bundle:

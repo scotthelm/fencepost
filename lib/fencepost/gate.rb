@@ -10,6 +10,7 @@ module Fencepost
 
     def open(params, key, model)
       perms = deny_permissions(allow_permissions(build_permits(model, [])))
+      params = params.permit!.to_h if params.respond_to?(:permit!)
       ActionController::Parameters.new(params).require(key).permit(perms)
     end
 
